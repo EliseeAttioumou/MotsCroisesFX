@@ -1,0 +1,17 @@
+#mainTitleLabel {
+    -fx-font-family: 'DK Crayon Crumble';
+    -fx-text-fill: white;
+    -fx-font-size: 65px;
+}
+
+
+#authorLabel {
+    -fx-font-family: 'DK Crayon Crumble';
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+}
+
+#authorLabel:hover {
+    -fx-font-size: 23px;
+    -fx-text-fill: gold;
+}

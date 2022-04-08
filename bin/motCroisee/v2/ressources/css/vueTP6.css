@@ -1,0 +1,31 @@
+#gridNameLabel {
+    -fx-font-family: 'DK Crayon Crumble';
+    -fx-text-fill: white;
+    -fx-font-size: 35px;
+}
+
+#backToMainMenuButton {
+    -fx-font-size: 20px;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-style: dashed;
+    -fx-border-width: 2px;
+    -fx-alignment: center;
+    -fx-font-size: 30px;
+    -fx-font-family: 'DK Crayon Crumble';
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.text-field:focused {
+    -fx-border-style: dashed;
+    -fx-border-color: #06a8f1;
+    -fx-border-width: 2px;
+}
+
+.goodTextField {
+    -fx-background-color: rgba(0, 255, 0, 0.4);
+}

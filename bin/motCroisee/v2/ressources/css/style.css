@@ -1,0 +1,26 @@
+@font-face {
+    src: url("../fonts/crayon.ttf");
+}
+
+
+.root {
+    -fx-background-image: url("../images/green-background.jpeg");
+    -fx-background-size: cover;
+}
+
+
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-style: dashed;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-family: 'DK Crayon Crumble';
+    -fx-font-size: 30px;
+}
+
+.button:hover {
+    -fx-border-width: 3px;
+    -fx-font-size: 31px;
+    -fx-border-color: #06a8f1;
+}
