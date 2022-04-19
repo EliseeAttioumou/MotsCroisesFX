@@ -6,30 +6,27 @@ import motCroisee.v2.view.ViewFactory;
 
 public class BaseController {
 
+	protected String viewPath;
+	protected ViewFactory viewFactory;
+	protected ChargerGrille chargerGrille;
+	protected Scene scene;
 
-    protected String viewPath;
-    protected ViewFactory viewFactory;
-    protected ChargerGrille chargerGrille;
-    protected Scene scene;
+	public BaseController(String viewPath, ViewFactory viewFactory) {
+		this.viewPath = viewPath;
+		this.viewFactory = viewFactory;
+		this.chargerGrille = new ChargerGrille();
+	}
 
-    public BaseController(String viewPath, ViewFactory viewFactory) {
-        this.viewPath = viewPath;
-        this.viewFactory = viewFactory;
-        this.chargerGrille = new ChargerGrille();
-    }
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
+	public void afterInit() {
 
-    public void afterInit() {
+	}
 
-    }
-
-
-    public String getViewPath() {
-        return viewPath;
-    }
-
+	public String getViewPath() {
+		return viewPath;
+	}
 
 }

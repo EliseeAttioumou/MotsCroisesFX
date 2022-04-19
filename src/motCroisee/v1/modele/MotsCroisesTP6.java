@@ -1,162 +1,129 @@
 package motCroisee.v1.modele;
 
-import javafx.beans.property.SimpleSetProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MotsCroisesTP6 implements SpecifMotsCroises
-{
-    public Grille<Character> solution ;
-    private Grille<StringProperty> proposition ;
-    private Grille<String> horizontal ;
-    private Grille<String> vertical ;
+public class MotsCroisesTP6 implements SpecifMotsCroises {
+	
+	public Grille<Character> solution;
+	private Grille<StringProperty> proposition;
+	private Grille<String> horizontal;
+	private Grille<String> vertical;
 
-    public MotsCroisesTP6(int hauteur, int largeur)
-    {
-        solution = new Grille<Character> (hauteur, largeur) ;
-        proposition = new Grille<StringProperty> (hauteur, largeur) ;
-        horizontal = new Grille<String> (hauteur, largeur) ;
-        vertical = new Grille<String> (hauteur, largeur) ;
+	public MotsCroisesTP6(int hauteur, int largeur) {
+		solution = new Grille<Character>(hauteur, largeur);
+		proposition = new Grille<StringProperty>(hauteur, largeur);
+		horizontal = new Grille<String>(hauteur, largeur);
+		vertical = new Grille<String>(hauteur, largeur);
 
-        for (int lig=1; lig<=getHauteur(); lig++) {
-            for (int col = 1; col <= getLargeur(); col++) {
-                this.proposition.setCellule(lig,col, new SimpleStringProperty(" "));
-            }
-        }
+		for (int lig = 1; lig <= getHauteur(); lig++) {
+			for (int col = 1; col <= getLargeur(); col++) {
+				this.proposition.setCellule(lig, col, new SimpleStringProperty(" "));
+				setCaseNoire(lig, col, true);
+			}
+		}
+	}
 
+	@Override
+	public int getHauteur() {
+		return this.solution.getHauteur();
+	}
 
-        for (int lig=1; lig<=getHauteur(); lig++)
-        {
-            for (int col=1; col<=getLargeur(); col++)
-            {
-                setCaseNoire(lig, col, true);
-            }
-        }
-    }
+	public int getLargeur() {
+		return solution.getLargeur();
+	}
 
+	public boolean coordCorrectes(int lig, int col) {
+		return 1 <= lig && lig <= getHauteur() && 1 <= col && col <= getLargeur();
+	}
 
-    @Override
-    public int getHauteur() {
-        return this.solution.getHauteur();
-    }
+	public boolean estCaseNoire(int lig, int col) {
+		assert coordCorrectes(lig, col);
+		return (solution.getCellule(lig, col) == null);
+	}
 
-    public int getLargeur()
-    {
-        return solution.getLargeur() ;
-    }
+	public void setCaseNoire(int lig, int col, boolean noire) {
+		assert coordCorrectes(lig, col);
+		if (noire) {
+			solution.setCellule(lig, col, null);
+		} else if (solution.getCellule(lig, col) == null) {
+			solution.setCellule(lig, col, ' ');
+		}
+	}
 
-    public boolean coordCorrectes(int lig, int col)
-    {
-        return 1<=lig && lig<=getHauteur()
-                && 1<=col && col<=getLargeur() ;
-    }
+	public char getSolution(int lig, int col) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		return solution.getCellule(lig, col);
+	}
 
-    public boolean estCaseNoire(int lig, int col)
-    {
-        assert coordCorrectes(lig, col) ;
-        return (solution.getCellule(lig, col) == null) ;
-    }
+	public void setSolution(int lig, int col, char sol) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		setSol(lig, col, sol);
+	}
 
-    public void setCaseNoire(int lig, int col, boolean noire)
-    {
-        assert coordCorrectes(lig, col) ;
-        if (noire)
-        {
-            solution.setCellule(lig, col, null) ;
-        }
-        else if (solution.getCellule(lig, col) == null)
-        {
-            solution.setCellule(lig, col, ' ') ;
-        }
-    }
+	private void setSol(int lig, int col, char sol) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		solution.setCellule(lig, col, sol);
+	}
 
-    public char getSolution(int lig, int col)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        return solution.getCellule(lig, col) ;
-    }
+	public char getProposition(int lig, int col) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		return this.propositionProperty(lig, col).getValue().charAt(0);
+	}
 
-    public void setSolution(int lig, int col, char sol)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        setSol(lig, col, sol) ;
-    }
+	public void setProposition(int lig, int col, char prop) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		this.propositionProperty(lig, col).setValue(String.valueOf(prop));
+	}
 
-    private void setSol(int lig, int col, char sol)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        solution.setCellule(lig, col, sol) ;
-    }
+	public String getDefinition(int lig, int col, boolean horiz) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		if (horiz) {
+			return horizontal.getCellule(lig, col);
+		} else {
+			return vertical.getCellule(lig, col);
+		}
+	}
 
-    public char getProposition(int lig, int col)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        return proposition.getCellule(lig, col).get().charAt(0);
-    }
+	public void setDefinition(int lig, int col, boolean horiz, String def) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
+		if (horiz) {
+			horizontal.setCellule(lig, col, def);
+		} else {
+			vertical.setCellule(lig, col, def);
+		}
+	}
 
-    public void setProposition(int lig, int col, char prop)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        proposition.getCellule(lig, col).set(Character.toString(prop)) ;
-    }
+	public StringProperty propositionProperty(int lig, int col) {
 
-    public String getDefinition(int lig, int col, boolean horiz)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        if (horiz)
-        {
-            return horizontal.getCellule(lig, col) ;
-        }
-        else
-        {
-            return vertical.getCellule(lig, col) ;
-        }
-    }
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
 
-    public void setDefinition(int lig, int col, boolean horiz, String def)
-    {
-        assert coordCorrectes(lig, col) ;
-        assert !estCaseNoire(lig, col) ;
-        if (horiz)
-        {
-            horizontal.setCellule(lig, col, def) ;
-        }
-        else
-        {
-            vertical.setCellule(lig, col, def) ;
-        }
-    }
+		return this.proposition.getCellule(lig, col);
 
-    public StringProperty propositionProperty(int lig,int col){
+	}
 
-        assert coordCorrectes(lig,col);
-        assert !estCaseNoire(lig, col);
+	public void montrerSolution(int lig, int col) {
+		assert coordCorrectes(lig, col);
+		assert !estCaseNoire(lig, col);
 
-        return this.proposition.getCellule(lig,col);
+		this.setProposition(lig, col, this.getSolution(lig, col));
 
-    }
+	}
 
-    public void montrerSolution(int lig, int col) {
-        assert coordCorrectes(lig,col);
-        assert !estCaseNoire(lig, col);
-
-        this.proposition.getCellule(lig,col).set(this.solution.getCellule(lig,col).toString());
-
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Solution\n" + solution
-                + "\nProposition\n" + proposition
-                + "\nHorizontal\n" + horizontal
-                + "\nVertical\n" + vertical ;
-    }
+	@Override
+	public String toString() {
+		return "Solution\n" + solution 
+				+ "\nProposition\n" + proposition 
+				+ "\nHorizontal\n" + horizontal
+				+ "\nVertical\n" + vertical;
+	}
 
 }

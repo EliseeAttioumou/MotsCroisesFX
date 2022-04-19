@@ -26,36 +26,27 @@ public class ControleurTP6 {
                 TextField tf = (TextField) n;
 
                 int lig = ((int) n.getProperties().get("gridpane-row")) + 1;
-                int col = ((int) n.getProperties().get("gridpane-column")) + 1;// Initialisation du TextField tf ayant pour coordonnées (lig, col)// (cf. sections 1.3, 1.4 et 1.5)   }}
+                int col = ((int) n.getProperties().get("gridpane-column")) + 1;
 
                 //Bind des cases de la vue avec celles du modele
                 tf.textProperty().bindBidirectional(motsCroisesTP6.propositionProperty(lig,col));
 
                 //Ajout des toolTip
-
-                //Trois cas
-                String defHorizontal = motsCroisesTP6.getDefinition(lig,col,true);
-                String defVertical = motsCroisesTP6.getDefinition(lig,col,false);
-
-                //Deux definition horizontal et vertical
-                if ( defHorizontal != null && defVertical != null ){
-                    tf.setTooltip(new Tooltip("ligne " + lig + " colonne " + col + " (horizontal / vertical) : " + defHorizontal + "/" + defVertical));
-                } else if ( defHorizontal != null ){
-                    tf.setTooltip(new Tooltip("ligne " + lig + " colonne " + col + " (horizontal) : " + defHorizontal ));
-                } else if ( defVertical != null ){
-                    tf.setTooltip(new Tooltip("ligne " + lig + " colonne " + col + " (vertical) : " + defVertical));
-                }
+				tf.setTooltip(new Tooltip(infoBulles(lig, col)));
 
                 //Ajout des cliques molette pour devoiler la solution
                 tf.setOnMouseClicked( (e)-> {this.clicLettre(e);} );
-
-
-
-
             }
         }
     }
 
+	// affichage infobulles : soit une chaîne donnant la définition horizontale,
+	// la définition verticale, ou les deux avec un « / » de séparation
+	private String infoBulles(int lig, int col) {
+		String defHoriz = motsCroisesTP6.getDefinition(lig, col, true);
+		String defVert = motsCroisesTP6.getDefinition(lig, col, false);
+		return defHoriz != null && defVert != null ? defHoriz + " / " + defVert : defHoriz != null ? defHoriz : defVert;
+	}
 
     @FXML
     public void clicLettre(MouseEvent e) {

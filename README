@@ -1,0 +1,14 @@
+Rendu TP6
+
+Binôme : Christophe QUINIIOU, Elisée ATTIOUMOU
+
+IDE utilisé : Eclipse IDE version 2021-12 (avec javaFX installé)
+
+Le projet se COMPILE et se LANCE correctement.
+
+Pour lancer le projet il faut l'importer dans Eclipse et executer la classe motsCroisee.v2/MainTP6 (ou motCroisee.v1/MainTP6 pour la partie 1 du projet).
+
+Il faut egalement se connecter au réseau de l'istic (directement ou avec le VPN) pour avoir accès à la BD des mots croisées sinon le projet ne fonctionne pas correctement.
+
+
+

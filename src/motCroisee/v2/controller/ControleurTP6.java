@@ -1,32 +1,21 @@
 package motCroisee.v2.controller;
 
-import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
-import javafx.scene.robot.Robot;
 import javafx.util.Duration;
 import motCroisee.v2.modele.MotsCroisesTP6;
-import motCroisee.v2.modele.ChargerGrille;
 import motCroisee.v2.view.ViewFactory;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 
 public class ControleurTP6 extends BaseController {
@@ -122,9 +111,7 @@ public class ControleurTP6 extends BaseController {
 				TextField tf = (TextField) n;
 
 				int lig = ((int) n.getProperties().get("gridpane-row")) + 1;
-				int col = ((int) n.getProperties().get("gridpane-column")) + 1;// Initialisation du TextField tf ayant
-																				// pour coordonnées (lig, col)// (cf.
-																				// sections 1.3, 1.4 et 1.5) }}
+				int col = ((int) n.getProperties().get("gridpane-column")) + 1;
 
 				// Bind des cases de la vue avec celles du modele
 				tf.textProperty().bindBidirectional(motsCroisesTP6.propositionProperty(lig, col));
@@ -139,19 +126,7 @@ public class ControleurTP6 extends BaseController {
 				scaleTransition.setNode(n);
 
 				// Ajout des toolTip
-
-				// Trois cas
-				String defHorizontal = motsCroisesTP6.getDefinition(lig, col, true);
-				String defVertical = motsCroisesTP6.getDefinition(lig, col, false);
-
-				// Deux definition horizontal et vertical
-				if (defHorizontal != null && defVertical != null) {
-					tf.setTooltip(new Tooltip(defHorizontal + " / " + defVertical));
-				} else if (defHorizontal != null) {
-					tf.setTooltip(new Tooltip(defHorizontal));
-				} else if (defVertical != null) {
-					tf.setTooltip(new Tooltip(defVertical));
-				}
+				tf.setTooltip(new Tooltip(infoBulles(lig, col)));
 
 				// Ajout des evenements
 
@@ -163,7 +138,7 @@ public class ControleurTP6 extends BaseController {
 				// Limite le nombre de caractères dans le champ a 1
 				tf.textProperty().addListener((observableValue, oldString, newString) -> {
 
-					System.out.println("Changed event : old=(" + oldString + ")new=(" + newString + ")");
+					// System.out.println("Changed event : old=(" + oldString + ")new=(" + newString + ")");
 
 					// Remise a zéro de la taille de la case
 					tf.setScaleX(1);
@@ -252,8 +227,7 @@ public class ControleurTP6 extends BaseController {
 		boolean ret = false;
 		for (Node n : grilleMC.getChildren()) {
 			if (n instanceof TextField) {
-				TextField tf = (TextField) n;
-
+				// TextField tf = (TextField) n;
 				int tfLig = ((int) n.getProperties().get("gridpane-row")) + 1;
 				int tfCol = ((int) n.getProperties().get("gridpane-column")) + 1;
 
@@ -265,7 +239,6 @@ public class ControleurTP6 extends BaseController {
 					ret = true;
 					break;
 				}
-
 			}
 		}
 		return ret;
@@ -347,7 +320,17 @@ public class ControleurTP6 extends BaseController {
 		case ENTER:
 			highlightGoodBox();
 			checkforWin();
+		default:
+			break;
 		}
+	}
+
+	// affichage infobulles : soit une chaîne donnant la définition horizontale,
+	// la définition verticale, ou les deux avec un « / » de séparation
+	private String infoBulles(int lig, int col) {
+		String defHoriz = motsCroisesTP6.getDefinition(lig, col, true);
+		String defVert = motsCroisesTP6.getDefinition(lig, col, false);
+		return defHoriz != null && defVert != null ? defHoriz + " / " + defVert : defHoriz != null ? defHoriz : defVert;
 	}
 
 	@FXML

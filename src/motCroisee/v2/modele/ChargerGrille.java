@@ -10,13 +10,11 @@ public class ChargerGrille {
 	private Connection connexion;
 
 	public ChargerGrille() {
-
 		try {
 			connexion = connecterBD();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static Connection connecterBD() throws SQLException {
@@ -36,21 +34,13 @@ public class ChargerGrille {
 
 		Map<Integer, String> grilles = new HashMap<>();
 
-		// Recuperation des grilles
-		String sql = "SELECT * FROM TP5_GRILLE";
-		Statement st = this.connexion.createStatement();
-		ResultSet results = st.executeQuery(sql);
-
-		while (results.next()) {
-			Integer num_grille = results.getInt("num_grille");
-			String nom_grille = results.getString("nom_grille");
-			String hauteur = results.getString("hauteur");
-			String largeur = results.getString("largeur");
-
-			grilles.put(num_grille, String.format("%s (%sx%s)", nom_grille, hauteur, largeur));
-
+		Statement stmt = connexion.createStatement();
+		ResultSet res = stmt.executeQuery("select * from TP5_GRILLE");
+		while (res.next()) {
+			String nomGrille = res.getString(2);
+			int numGrille = res.getInt(1), haut = res.getInt(3), larg = res.getInt(4);
+			grilles.put(numGrille, nomGrille + " (" + haut + "x" + larg + ")");
 		}
-
 		return grilles;
 	}
 
@@ -63,7 +53,7 @@ public class ChargerGrille {
 		// recuperation du numero de la premiere grille
 		numgrilleMin = it.next();
 
-		// parcour pour obtenir le numero de la derniere grille
+		// parcours pour obtenir le numero de la derniere grille
 		while (it.hasNext()) {
 			numgrilleMax = it.next();
 		}
@@ -76,64 +66,53 @@ public class ChargerGrille {
 
 	public MotsCroisesTP6 extraireGrille(int numGrille) throws SQLException {
 
-		int hauteur = 0, largeur = 0, ligne = 0, colonne = 0;
-		String definition = "", solution = "";
-		boolean horizontal = false;
-		String nomGrille = "Grille de mots croisés";
-		MotsCroisesTP6 motsCroises = null;// motCroise vide pour le cas ou numGrille invalide
+		Statement stmt = connexion.createStatement();
+		ResultSet res = stmt.executeQuery("select hauteur, largeur, nom_grille from TP5_GRILLE where num_grille = " + numGrille);
+		// Extraire la hauteur et la largeur de la BD pour initialiser notre grille
+		int haut, larg;
+		String nomGrille;
+		if (res.next()) {
+			haut = res.getInt(1);
+			larg = res.getInt(2);
+			nomGrille = res.getString(3);
+		} else
+			throw new IllegalArgumentException("La grille : n°" + numGrille + " n'existe pas");
 
-		String sql = "SELECT nom_grille, hauteur , largeur, definition, ligne, colonne, solution, horizontal "
-				+ " FROM TP5_GRILLE, TP5_MOT " + " WHERE TP5_GRILLE.num_grille = ? "
-				+ " AND TP5_MOT.num_grille = TP5_GRILLE.num_grille";
+		MotsCroisesTP6 mc = new MotsCroisesTP6(haut, larg);
+		mc.setNomGrille(nomGrille);	
 
-		PreparedStatement sth = connexion.prepareStatement(sql);
-		sth.setInt(1, numGrille);
-		ResultSet result = sth.executeQuery();
-
-		boolean firstLoop = true;
-
-		// si le resultat est nul alors aucune grille ne correspond a ce num grille
-		while (result.next()) {
-
-			// Creer le mot croisé a la premier itération
-			if (firstLoop) {
-				hauteur = result.getInt("hauteur");
-				largeur = result.getInt("largeur");
-				nomGrille = result.getString("nom_grille");
-
-				motsCroises = new MotsCroisesTP6(hauteur, largeur);
-				motsCroises.setNomGrille(nomGrille);
-
-				firstLoop = false;
-			}
-
-			definition = result.getString("definition");
-			ligne = result.getInt("ligne");
-			colonne = result.getInt("colonne");
-			solution = result.getString("solution");
-			horizontal = (result.getInt("horizontal") == 1) ? true : false;
-
-			// **** Remplissage des grilles
-
-			// solution
-			for (int i = 0; i < solution.length(); i++) {
-				// si le mot est horizontal
-				if (horizontal) {
-					motsCroises.setSolution(ligne, colonne + i, solution.charAt(i));
-				} else {
-					motsCroises.setSolution(ligne + i, colonne, solution.charAt(i));
-				}
-			}
-
-			// definition
-			if (horizontal) {
-				motsCroises.setDefinition(ligne, colonne, true, definition);
-			} else {
-				motsCroises.setDefinition(ligne, colonne, false, definition);
-			}
-
+		// Extraire les autres infos pour compléter la grille (ligne, colonne, horiz,..)
+		res = stmt.executeQuery("select * from TP5_MOT where num_grille = " + numGrille);
+		while (res.next()) {
+			int lig = res.getInt(4), col = res.getInt(5);
+			boolean horiz = res.getBoolean(3);
+			String def = res.getString(2), sol = res.getString(6).toUpperCase();
+			setCase(mc, lig, col, horiz, def, sol);
 		}
-		return motsCroises;
+		connexion.close();
+		return mc;
+	}
+
+	private void setCase(MotsCroisesTP6 m, int lig, int col, boolean horiz, String def, String sol) {
+		// "denoircir" la case qu'on veut modifier
+		m.setCaseNoire(lig, col, false);
+		// ajout def
+		m.setDefinition(lig, col, horiz, def);
+		// ajout solution caractère par caractère
+		int i = 0;
+		if (horiz) {
+			while (i < sol.length()) {
+				m.setCaseNoire(lig, col + i, false);
+				m.setSolution(lig, col + i, sol.charAt(i));
+				i++;
+			}
+		} else {
+			while (i < sol.length()) {
+				m.setCaseNoire(lig + i, col, false);
+				m.setSolution(lig + i, col, sol.charAt(i));
+				i++;
+			}
+		}
 	}
 
 }
