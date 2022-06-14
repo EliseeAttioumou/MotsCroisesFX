@@ -7,4 +7,4 @@ Liste des grilles disponibles :
 9       NYT       Expert
 10      Français  Débutant
 11      ?         Impossible
-/p>
+</p>
