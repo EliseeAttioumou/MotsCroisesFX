@@ -3,7 +3,7 @@ Un jeu de mots croisés avec 11 grilles différentes (en anglais & français) et
 l'interface graphique a été fait avec JavaFX en utilisant un pattern MVC.
 
 Liste des grilles disponibles :
-<table >
+<table>
   <tr>
     <th>N°</th>
     <th>Intitulé</th>
@@ -30,6 +30,16 @@ Liste des grilles disponibles :
     <td>Impossible<td>
   </tr>
 </table>
+
+Présentation rapide du jeu :
+
+<ul>
+  <li> Menu principal  </li>
+  <li> Choix de la grille </li>
+</ul>
+
+
+Déroulement d'une partie : 
 
 
 
