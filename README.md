@@ -34,7 +34,7 @@ Liste des grilles disponibles :
 Présentation rapide du jeu :
 
 <ul>
-  <li> Menu principal  </li>
+  <li> Menu principal <img src="screenshot/main_menu.png" alt="Capture d'écran du menu principal"> </li>
   <li> Choix de la grille </li>
 </ul>
 
