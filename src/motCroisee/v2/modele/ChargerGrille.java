@@ -86,7 +86,7 @@ public class ChargerGrille {
 		while (res.next()) {
 			int lig = res.getInt(4), col = res.getInt(5);
 			boolean horiz = res.getBoolean(3);
-			String def = res.getString(2), sol = res.getString(6).toUpperCase();
+			String def = res.getString(2), sol = res.getString(6);
 			setCase(mc, lig, col, horiz, def, sol);
 		}
 		connexion.close();

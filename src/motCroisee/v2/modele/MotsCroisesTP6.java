@@ -20,7 +20,7 @@ public class MotsCroisesTP6 implements SpecifMotsCroises {
 
 		for (int lig = 1; lig <= getHauteur(); lig++) {
 			for (int col = 1; col <= getLargeur(); col++) {
-				this.proposition.setCellule(lig, col, new SimpleStringProperty(" "));
+				this.proposition.setCellule(lig, col, new SimpleStringProperty(""));
 				setCaseNoire(lig, col, true);
 			}
 		}

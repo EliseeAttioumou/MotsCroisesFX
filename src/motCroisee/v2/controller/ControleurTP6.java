@@ -138,7 +138,8 @@ public class ControleurTP6 extends BaseController {
 				// Limite le nombre de caractères dans le champ a 1
 				tf.textProperty().addListener((observableValue, oldString, newString) -> {
 
-					// System.out.println("Changed event : old=(" + oldString + ")new=(" + newString + ")");
+					// System.out.println("Changed event : old=(" + oldString + ")new=(" + newString
+					// + ")");
 
 					// Remise a zéro de la taille de la case
 					tf.setScaleX(1);
@@ -154,9 +155,10 @@ public class ControleurTP6 extends BaseController {
 
 					String oneChar = newString.substring(newString.length() - 1);
 
+
 					// Verification de l'entrée utilisateur
 					if (!oneChar.matches("[a-zA-Z]")) {
-						tf.setText(" ");
+						tf.setText(oldString);
 
 						return;
 					}
@@ -268,7 +270,7 @@ public class ControleurTP6 extends BaseController {
 
 		if (this.motsCroisesTP6.gagne()) {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Bas bravo");
+			alert.setTitle("Bravo!");
 			alert.setHeaderText("Bien joué tu as réussi a finir cette grille");
 			alert.showAndWait().ifPresent(rs -> {
 				if (rs == ButtonType.OK) {
@@ -342,6 +344,7 @@ public class ControleurTP6 extends BaseController {
 			int col = ((int) laCase.getProperties().get("gridpane-column")) + 1;
 
 			this.motsCroisesTP6.montrerSolution(lig, col);
+			laCase.getStyleClass().add("goodTextField");
 		}
 	}
 
