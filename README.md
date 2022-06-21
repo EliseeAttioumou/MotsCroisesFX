@@ -19,7 +19,7 @@ Liste des grilles disponibles :
     <th>Difficulté</th>
   </tr>
   <tr>
-    <td>1 to 8</td>
+    <td>1 à 8</td>
     <td>Anglais</td>
     <td>Moyen<td>
   </tr>
