@@ -31,15 +31,42 @@ Liste des grilles disponibles :
   </tr>
 </table>
 
-Présentation rapide du jeu :
+<h2> Présentation rapide du jeu : </h2>
+<p> 
+  Menu principal
+  <img src="screenshots/main_menu.png" alt="Capture d'écran du menu principal" width="300">
+</p>  
+<p> 
+  Choix de la grille
+  <img src="screenshots/grid_choice.png" alt="Capture d'écran choix de la grille de jeu" width="300">
+</p> 
 
-<ul>
-  <li> Menu principal <img src="screenshot/main_menu.png" alt="Capture d'écran du menu principal"> </li>
-  <li> Choix de la grille </li>
-</ul>
+<h2> Déroulement d'une partie : </h2> 
+<p>
+  Un focus bleu apparait sur la case sélectionné dans laquelle on veut ecrire une lettre (miniscule uniquement*) 
+  <img src="screenshots/def.png" alt="Capture d'écran de la grille" width="300">
+</p>
+<p> 
+  Les définitions apparaissent en infobulle quand le curseur est placé sur une case Définition horizontale / Définition verticale 
+  <img src="screenshots/def_2.png" alt="Définition" width="auto"> 
+</p>
+<p> 
+  Le focus se deplace automatiquement vers la case suivante (horizontalement ou verticalement) quand on ecrit une lettre dans la case selectionnée
+  et inversement quand on supprime une lettre.
+</p>
+<p> 
+  Appuyer sur la touche ENTER permet de vérifier si les lettres placées sont correctes, les cases sont colorées en vert si c'est le cas (sinon rien).
+</p>
+
+<p> 
+  Appuyer sur le clic central permet de devoiler la solution d'une case.
+</p>
+
+<p>
+  La partie se termine une fois que toutes les cases sont correctement remplies (appuyer la touche ENTER), une fenetre de fin de partie apparait alors.
+</p>
 
 
-Déroulement d'une partie : 
 
 
 
