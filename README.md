@@ -71,7 +71,9 @@ Liste des grilles disponibles :
 </p>
 
 <h2> Configuration : </h2> 
-
+<p>Java 16+ </p>
+<p>Pilotes JDBC + connexion au réseau de l'<a href="https://istic.univ-rennes1.fr/"> Istic </a> pour que le programme puisse accéder à la base de données où sont stockés les grilles. </p>
+<p>La connexion peut etre établie à l'aide d'un vpn comme <a href ="https://www.fortinet.com/fr/support/product-downloads"> fortificlient </a> </p>
 
 
 
