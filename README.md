@@ -62,7 +62,7 @@ Liste des grilles disponibles :
 
 <p> 
   Appuyer sur le clic central permet de devoiler la solution d'une case.
-  <img src="screenshots/ central clic.gif" alt="Gif pour illustrer la révélation des solutions" width="350"> 
+  <img src="screenshots/central clic.gif" alt="Gif pour illustrer la révélation des solutions" width="350"> 
 </p>
 
 <p>
