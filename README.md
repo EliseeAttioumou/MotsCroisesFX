@@ -5,11 +5,11 @@ L'interface graphique a été faité avec JavaFX en utilisant un pattern MVC.
 <h2> Présentation rapide du jeu : </h2>
 <p> 
   Menu principal
-  <img src="screenshots/main_menu.png" alt="Capture d'écran du menu principal" width="350">
+  <p> <img src="screenshots/main_menu.png" alt="Capture d'écran du menu principal" width="350"> </p>
 </p>  
 <p> 
   Choix de la grille
-  <img src="screenshots/grid_choice.png" alt="Capture d'écran choix de la grille de jeu" width="350">
+ <p> <img src="screenshots/grid_choice.png" alt="Capture d'écran choix de la grille de jeu" width="350"> </p>
   
 Liste des grilles disponibles :
 <table>
@@ -53,7 +53,7 @@ Liste des grilles disponibles :
 <p> 
   Le focus se deplace automatiquement vers la case suivante (horizontalement ou verticalement) quand on ecrit une lettre dans la case selectionnée
   et inversement quand on supprime une lettre.
-  <img src="screenshots/move.gif" alt="Gif pour illustrer le deplacement du curseur" width="350"> 
+  <p> <img src="screenshots/move.gif" alt="Gif pour illustrer le deplacement du curseur" width="350"> </p>
 </p>
 <p> 
   Appuyer sur la touche ENTER permet de vérifier si les lettres placées sont correctes, les cases sont colorées en vert si c'est le cas (sinon rien).
@@ -62,12 +62,12 @@ Liste des grilles disponibles :
 
 <p> 
   Appuyer sur le clic central permet de devoiler la solution d'une case.
-  <img src="screenshots/central clic.gif" alt="Gif pour illustrer la révélation des solutions" width="350"> 
+  <p> <img src="screenshots/central clic.gif" alt="Gif pour illustrer la révélation des solutions" width="350"> </p>
 </p>
 
 <p>
   La partie se termine une fois que toutes les cases sont correctement remplies (appuyer la touche ENTER), une fenetre de fin de partie apparait alors.
-  <img src="screenshots/won.png" alt="Partie terminée" width="350"> 
+  <p> <img src="screenshots/won.png" alt="Partie terminée" width="350"> </p> 
 </p>
 
 <h2> Configuration : </h2> 
