@@ -47,7 +47,7 @@ Liste des grilles disponibles :
   <img src="screenshots/def.png" alt="Capture d'écran de la grille" width="300">
 </p>
 <p> 
-  Les définitions apparaissent en infobulle quand le curseur est placé sur une case Définition horizontale / Définition verticale 
+  Les définitions apparaissent en info-bulle quand le curseur est placé sur une case [Définition horizontale / Définition verticale]
   <img src="screenshots/def_2.png" alt="Définition" width="auto"> 
 </p>
 <p> 
