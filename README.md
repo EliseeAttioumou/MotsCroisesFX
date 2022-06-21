@@ -1,6 +1,6 @@
 # MotsCroisesFX
 Un jeu de mots croisés avec 11 grilles différentes (en anglais & français) et 3 niveaux de difficulté. 
-L'interface graphique a été fait avec JavaFX en utilisant un pattern MVC.
+L'interface graphique a été faité avec JavaFX en utilisant un pattern MVC.
 
 <h2> Présentation rapide du jeu : </h2>
 <p> 
