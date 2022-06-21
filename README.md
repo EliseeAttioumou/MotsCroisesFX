@@ -70,6 +70,8 @@ Liste des grilles disponibles :
   <img src="screenshots/won.png" alt="Partie terminée" width="350"> 
 </p>
 
+<h2> Configuration : </h2> 
+
 
 
 
