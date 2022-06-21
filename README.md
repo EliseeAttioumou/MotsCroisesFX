@@ -43,7 +43,7 @@ Liste des grilles disponibles :
 
 <h2> Déroulement d'une partie : </h2> 
 <p>
-  Un focus bleu apparait sur la case sélectionné dans laquelle on veut ecrire une lettre (miniscule uniquement*) 
+  Un focus bleu apparait sur la case sélectionnée dans laquelle on veut ecrire une lettre (miniscule uniquement*) 
   <img src="screenshots/def.png" alt="Capture d'écran de la grille" width="300">
 </p>
 <p> 
