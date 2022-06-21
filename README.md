@@ -2,6 +2,15 @@
 Un jeu de mots croisés avec 11 grilles différentes (en anglais & français) et 3 niveaux de difficulté. 
 l'interface graphique a été fait avec JavaFX en utilisant un pattern MVC.
 
+<h2> Présentation rapide du jeu : </h2>
+<p> 
+  Menu principal
+  <img src="screenshots/main_menu.png" alt="Capture d'écran du menu principal" width="350">
+</p>  
+<p> 
+  Choix de la grille
+  <img src="screenshots/grid_choice.png" alt="Capture d'écran choix de la grille de jeu" width="350">
+  
 Liste des grilles disponibles :
 <table>
   <tr>
@@ -30,15 +39,6 @@ Liste des grilles disponibles :
     <td>Impossible<td>
   </tr>
 </table>
-
-<h2> Présentation rapide du jeu : </h2>
-<p> 
-  Menu principal
-  <img src="screenshots/main_menu.png" alt="Capture d'écran du menu principal" width="350">
-</p>  
-<p> 
-  Choix de la grille
-  <img src="screenshots/grid_choice.png" alt="Capture d'écran choix de la grille de jeu" width="350">
 </p> 
 
 <h2> Déroulement d'une partie : </h2> 
