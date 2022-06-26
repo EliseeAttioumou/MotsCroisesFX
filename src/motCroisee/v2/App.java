@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import motCroisee.v2.view.ViewFactory;
 
-public class MainTP6 extends Application {
+public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {

@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import motCroisee.v2.MainTP6;
+import motCroisee.v2.App;
 import motCroisee.v2.controller.BaseController;
 import motCroisee.v2.controller.ControleurTP6;
 import motCroisee.v2.controller.MainMenuController;
@@ -39,13 +39,13 @@ public class ViewFactory {
         if ( sceneToLoad.equals("MainMenu") ){
             stage.setTitle("Menu principal : Projet mots croisés");
             MainMenuController mainMenuController = new MainMenuController("view/MainMenu.fxml",this);
-            loader.setLocation(MainTP6.class.getResource(mainMenuController.getViewPath()));
+            loader.setLocation(App.class.getResource(mainMenuController.getViewPath()));
             loader.setController(mainMenuController);
 
         } else if ( sceneToLoad.equals("VueTP6") ){
             stage.setTitle("En jeu : Projet mots croisés");
             ControleurTP6 controleurTP6 = new ControleurTP6("view/VueTP6.fxml",this,Integer.valueOf(params.get("gridNumber")));
-            loader.setLocation(MainTP6.class.getResource(controleurTP6.getViewPath()));
+            loader.setLocation(App.class.getResource(controleurTP6.getViewPath()));
             loader.setController(controleurTP6);
 
         } else {
