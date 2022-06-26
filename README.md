@@ -44,11 +44,11 @@ Liste des grilles disponibles :
 <h2> Déroulement d'une partie : </h2> 
 <p>
   Un focus bleu apparait sur la case sélectionnée dans laquelle on veut ecrire une lettre (miniscule uniquement*) 
-  <img src="screenshots/def.png" alt="Capture d'écran de la grille" width="400">
+ <p> <img src="screenshots/def.png" alt="Capture d'écran de la grille" width="400"> </p>
 </p>
 <p> 
   Les définitions apparaissent en info-bulle quand le curseur est placé sur une case [Définition horizontale / Définition verticale]
-  <img src="screenshots/def_2.png" alt="Définition" width="400"> 
+ <p> <img src="screenshots/def_2.png" alt="Définition" width="400"> </p>
 </p>
 <p> 
   Le focus se deplace automatiquement vers la case suivante (horizontalement ou verticalement) quand on ecrit une lettre dans la case selectionnée
