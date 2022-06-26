@@ -70,8 +70,9 @@ Liste des grilles disponibles :
   <p> <img src="screenshots/won.png" alt="Partie terminée" width="400"> </p> 
 </p>
 
-<h2> Configuration : </h2> 
+<h2> Config ⚙️ : </h2> 
 <p>Java 16+ & javafx sdk pour executer le programme </p>
+<P>Run src/motCroisee/v2/App.java </p>
 
 
 
